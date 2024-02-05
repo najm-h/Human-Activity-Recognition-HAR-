@@ -9,3 +9,37 @@ Dynamic human activity recognition (HAR) is a domain of study that is currently 
 UCF11 data presented in this study are openly available in: https://www.crcv.ucf.edu/data/UCF_YouTube_Action.php. 
 UCFSports data presented in this study are openly available in: https://www.crcv.ucf.edu/data/UCF_YouTube_Action.php. 
 JHMDB data presented in this study are openly available in: http://jhmdb.is.tue.mpg.de/.
+
+
+# Feature Extraction
+MobileNet:
+model = model_MobileNet
+total_classes = 11
+X = []
+Y = []
+for path, dirs, files in os.walk(MainFolder):
+        print(path)
+    if re.search(r'datasetpat') is not None:
+        continue
+    
+    if re.search(r'datasetpat', path) is not None:
+        p = path.split('/')[2]
+        q = path.split('/')[3]
+        print("Extracting features from {} in {} folder...".format(q, p))
+        
+        for file in files:
+            actual_path = os.path.join(path, file)
+            t = vidToImages(actual_path, dim=dim, skipValue=skipValue)
+            t = preprocess(t, preProcess_func)
+            #print("dimension t:",t.shape)
+            t = model.predict(t)
+            print(t)
+            X.append(t)
+            Y.append(classes[p])
+            break 
+
+The output of the X is contained the features and y is the label equivalent the features. 
+
+
+#Classification
+
