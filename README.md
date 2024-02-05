@@ -11,7 +11,7 @@ UCFSports data presented in this study are openly available in: https://www.crcv
 JHMDB data presented in this study are openly available in: http://jhmdb.is.tue.mpg.de/.
 
 # Preprocessing:
-def vidToImages(videoFile, dim=(224,224), skipValue=6):
+def vidTo(videoFile, dim=(224,224), skipValue=6):
 
     cap = cv2.VideoCapture(videoFile)
 
@@ -53,11 +53,11 @@ for path, dirs, files in os.walk(MainFolder):
     if re.search(r'datasetpat', path) is not None:
         p = path.split('/')[2]
         q = path.split('/')[3]
-        print("Extracting features from {} in {} folder...".format(q, p))
+        print("Extracting features from {} in {} folder...".format()
         
         for file in files:
             actual_path = os.path.join(path, file)
-            t = vidToImages(actual_path, dim=dim, skipValue=skipValue)
+            t = vid(actual_path, dim=dim, skipValue=skipValue)
             t = preprocess(t, preProcess_func)
             #print("dimension t:",t.shape)
             t = model.predict(t)
