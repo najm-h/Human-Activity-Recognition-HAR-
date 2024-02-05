@@ -10,8 +10,36 @@ UCF11 data presented in this study are openly available in: https://www.crcv.ucf
 UCFSports data presented in this study are openly available in: https://www.crcv.ucf.edu/data/UCF_YouTube_Action.php. 
 JHMDB data presented in this study are openly available in: http://jhmdb.is.tue.mpg.de/.
 
+# Preprocessing:
+def vidToImages(videoFile, dim=(224,224), skipValue=6):
 
+    cap = cv2.VideoCapture(videoFile)
+
+    ImgArr = []
+
+    while(cap.isOpened()):
+        frameId = cap.get(cv2.CAP_PROP_POS_FRAMES)
+        ret, frame = cap.read()
+        if (ret != True):
+            break
+        if (frameId % skipValue == 0):
+            resized = resize(frame, preserve_range=True, output_shape=dim).astype(int)
+            ImgArr.append(resized)
+    cap.release()
+    
+    return np.array(ImgArr)
+
+    def preprocess(Arr, process_func):
+    img_array = []
+    for img in Arr:
+        t = img_to_array(img)
+        t = np.expand_dims(t, axis=0)
+        t = process_func(t)
+        img_array.append(t)
+    
+    return np.vstack(img_array)
 # Feature Extraction
+
 MobileNet:
 model = model_MobileNet
 total_classes = 11
@@ -42,4 +70,17 @@ The output of the X is contained the features and y is the label equivalent the 
 
 
 #Classification
+
+We used a padding funaction Which produced trial*30*1024.
+
+This feed into the
+several deep learning layer
+LSTM Layer
+Fully Connected Layer
+
+
+
+
+
+
 
