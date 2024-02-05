@@ -78,6 +78,23 @@ several deep learning layer
 LSTM Layer
 Fully Connected Layer
 
+# if you the instruction and pseudocode is helpful for you please cite below paper:
+
+## word citation formate:
+Hassan, Najmul, Abu Saleh Musa Miah, and Jungpil Shin. 2024. "A Deep Bidirectional LSTM Model Enhanced by Transfer-Learning-Based Feature Extraction for Dynamic Human Activity Recognition" Applied Sciences 14, no. 2: 603. https://doi.org/10.3390/app14020603
+
+## latex citation formate
+'''
+@Article{app14020603,
+AUTHOR = {Hassan, Najmul and Miah, Abu Saleh Musa and Shin, Jungpil},
+TITLE = {A Deep Bidirectional LSTM Model Enhanced by Transfer-Learning-Based Feature Extraction for Dynamic Human Activity Recognition},
+JOURNAL = {Applied Sciences},
+VOLUME = {14},
+YEAR = {2024},
+NUMBER = {2},
+ARTICLE-NUMBER = {603},
+URL = {https://www.mdpi.com/2076-3417/14/2/603},
+ISSN = {2076-3417}}
 
 
 
