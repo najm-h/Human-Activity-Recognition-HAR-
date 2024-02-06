@@ -11,38 +11,11 @@ UCFSports data presented in this study are openly available in: https://www.crcv
 JHMDB data presented in this study are openly available in: http://jhmdb.is.tue.mpg.de/.
 
 # Preprocessing:
-def vidTo(videoFile, dim=(224,224), skipValue=6):
-
-    cap = cv2.VideoCapture(videoFile)
-
-    ImgArr = []
-
-    while(cap.isOpened()):
-        frameId = cap.get(cv2.CAP_PROP_POS_FRAMES)
-        ret, frame = cap.read()
-        if (ret != True):
-            break
-        if (frameId % skipValue == 0):
-            resized = resize(frame, preserve_range=True, output_shape=dim).astype(int)
-            ImgArr.append(resized)
-    cap.release()
-    
-    return np.array(ImgArr)
-
-    def preprocess(Arr, process_func):
-    img_array = []
-    for img in Arr:
-        t = img_to_array(img)
-        t = np.expand_dims(t, axis=0)
-        t = process_func(t)
-        img_array.append(t)
-    
-    return np.vstack(img_array)
 # Feature Extraction
 
 MobileNet:
 model = model_MobileNet
-total_classes = 11
+total_classes = number of action
 X = []
 Y = []
 for path, dirs, files in os.walk(MainFolder):
@@ -51,8 +24,8 @@ for path, dirs, files in os.walk(MainFolder):
         continue
     
     if re.search(r'datasetpat', path) is not None:
-        p = path.split('/')[2]
-        q = path.split('/')[3]
+        p = path.split('//')[2]
+        q = path.split('///')[3]
         print("Extracting features from {} in {} folder...".format()
         
         for file in files:
